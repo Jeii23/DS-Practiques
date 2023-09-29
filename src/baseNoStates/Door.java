@@ -7,12 +7,14 @@ import org.json.JSONObject;
 public class Door {
   private final String id;
   private boolean closed; // physically
-
+  private boolean locked;
   public Door(String id) {
     this.id = id;
     closed = true;
+    locked = false;
   }
-
+//new doorstate(this)
+  // new locked(this)
   public void processRequest(RequestReader request) {
     // it is the Door that process the request because the door has and knows
     // its state, and if closed or open
@@ -43,9 +45,23 @@ public class Door {
         break;
       case Actions.LOCK:
         // TODO
+        if (locked || !closed ) {
+          System.out.println("Can't lock the door " + id + " because it's already locked or it's open");
+        } else {
+          if (closed)
+            locked = true;
+        }
+        break;
         // fall through
       case Actions.UNLOCK:
         // TODO
+        if (!locked || !closed ) {
+          System.out.println("Can't unlock the door " + id + " because it's already unlocked or it's open");
+        } else {
+          if (closed)
+            locked = false;
+        }
+        break;
         // fall through
       case Actions.UNLOCK_SHORTLY:
         // TODO
