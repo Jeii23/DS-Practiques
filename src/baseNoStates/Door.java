@@ -30,7 +30,7 @@ public class Door {
   private void doAction(String action) {
     switch (action) {
       case Actions.OPEN:
-        if (closed) {
+        if (closed && !locked) {
           closed = false;
         } else {
           System.out.println("Can't open door " + id + " because it's already open");
@@ -48,8 +48,7 @@ public class Door {
         if (locked || !closed ) {
           System.out.println("Can't lock the door " + id + " because it's already locked or it's open");
         } else {
-          if (closed)
-            locked = true;
+          locked = true;
         }
         break;
         // fall through
@@ -58,8 +57,7 @@ public class Door {
         if (!locked || !closed ) {
           System.out.println("Can't unlock the door " + id + " because it's already unlocked or it's open");
         } else {
-          if (closed)
-            locked = false;
+          locked = false;
         }
         break;
         // fall through
@@ -82,7 +80,10 @@ public class Door {
   }
 
   public String getStateName() {
-    return "unlocked";
+    if (!locked)
+      return "unlocked";
+    else
+      return "locked";
   }
 
   @Override
