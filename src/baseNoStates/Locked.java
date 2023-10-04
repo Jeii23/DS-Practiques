@@ -1,7 +1,7 @@
 package baseNoStates;
 
 public class Locked extends Status{
-  public void locked() {}
-  public void unlock() {}
+  public void locked() {setLocked(true);}
+  public void unlock() {setLocked(false);}
 
 }

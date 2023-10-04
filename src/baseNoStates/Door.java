@@ -6,12 +6,14 @@ import org.json.JSONObject;
 
 public class Door {
   private final String id;
+  private Status state;
+  private Locked lock;
   private boolean closed; // physically
-  private boolean locked;
   public Door(String id) {
+   state = new Locked(id);
     this.id = id;
     closed = true;
-    locked = false;
+
   }
 //new doorstate(this)
   // new locked(this)
@@ -30,7 +32,7 @@ public class Door {
   private void doAction(String action) {
     switch (action) {
       case Actions.OPEN:
-        if (closed && !locked) {
+        if (closed && !state.isLocked()) {
           closed = false;
         } else {
           System.out.println("Can't open door " + id + " because it's already open");
@@ -45,19 +47,20 @@ public class Door {
         break;
       case Actions.LOCK:
         // TODO
-        if (locked || !closed ) {
+        if (state.isLocked() || !closed ) {
           System.out.println("Can't lock the door " + id + " because it's already locked or it's open");
         } else {
-          locked = true;
+
+
         }
         break;
         // fall through
       case Actions.UNLOCK:
         // TODO
-        if (!locked || !closed ) {
+        if (!state.isLocked() || !closed ) {
           System.out.println("Can't unlock the door " + id + " because it's already unlocked or it's open");
         } else {
-          locked = false;
+          lock.setLocked(false);
         }
         break;
         // fall through
@@ -80,7 +83,7 @@ public class Door {
   }
 
   public String getStateName() {
-    if (!locked)
+    if (!state.isLocked())
       return "unlocked";
     else
       return "locked";
