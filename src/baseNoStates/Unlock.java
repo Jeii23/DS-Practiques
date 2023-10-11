@@ -1,7 +1,16 @@
 package baseNoStates;
 
 public class Unlock extends Status{
-  public void locked() {setLocked(true);}
-  public void unlock() {setLocked(false);}
+  private String name;
+
+  public Unlock(Door door) {
+    super(door);
+    name = "unlocked";
+  }
+
+  public void locked(Door door) {
+    door.setState(new Locked(door));
+  }
+  public void unlock() {}
 
 }

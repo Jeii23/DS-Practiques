@@ -7,10 +7,14 @@ import org.json.JSONObject;
 public class Door {
   private final String id;
   private Status state;
-  private Locked lock;
+
+  public void setState(Status state) {
+    this.state = state;
+  }
+
   private boolean closed; // physically
   public Door(String id) {
-   state = new Locked(id);
+   state = new Locked(this);
     this.id = id;
     closed = true;
 
@@ -32,7 +36,7 @@ public class Door {
   private void doAction(String action) {
     switch (action) {
       case Actions.OPEN:
-        if (closed && !state.isLocked()) {
+        if (closed) {
           closed = false;
         } else {
           System.out.println("Can't open door " + id + " because it's already open");
@@ -47,7 +51,7 @@ public class Door {
         break;
       case Actions.LOCK:
         // TODO
-        if (state.isLocked() || !closed ) {
+        if (state.locked() || !closed ) {
           System.out.println("Can't lock the door " + id + " because it's already locked or it's open");
         } else {
 
