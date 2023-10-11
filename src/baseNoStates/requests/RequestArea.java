@@ -1,9 +1,13 @@
 package baseNoStates.requests;
 
+
 import baseNoStates.Actions;
 import baseNoStates.Building;
+import baseNoStates.Door;
+import baseNoStates.Floor;
 import org.json.JSONArray;
 import org.json.JSONObject;
+
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -90,7 +94,8 @@ public class RequestArea implements Request, Building {
 
     // make the door requests and put them into the area request to be authorized later and
     // processed later
-    Floor area = DirectoryAreas.findAreaById(areaId);
+
+    Floor area =  DirectoryAreas.findAreaById(areaId);
     // an Area is a Space or a Partition
     if (area != null) {
       // is null when from the app we click on an action but no place is selected because

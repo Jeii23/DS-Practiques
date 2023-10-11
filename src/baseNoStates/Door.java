@@ -1,12 +1,19 @@
 package baseNoStates;
 
+
 import baseNoStates.requests.RequestReader;
 import org.json.JSONObject;
+
+import java.time.LocalDateTime;
 
 
 public class Door implements Building {
   private final String id;
   private Status state;
+
+
+  private RequestReader request;
+  private User user;
 
   public void setState(Status state) {
     this.state = state;
@@ -15,8 +22,8 @@ public class Door implements Building {
   private boolean closed; // physically
   public Door(String id) {
    state = new Locked(this);
-    this.id = id;
-    closed = true;
+   this.id = id;
+   closed = true;
 
   }
 //new doorstate(this)
@@ -65,7 +72,10 @@ public class Door implements Building {
         // fall through
       case Actions.UNLOCK_SHORTLY:
         // TODO
-        System.out.println("Action " + action + " not implemented yet");
+
+        LocalDateTime time = LocalDateTime.now();
+        request= new RequestReader(user.getCredential(), Actions.UNLOCK_SHORTLY,time,getId());
+
         break;
       default:
         assert false : "Unknown action " + action;
