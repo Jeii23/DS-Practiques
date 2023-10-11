@@ -4,7 +4,7 @@ import baseNoStates.requests.RequestReader;
 import org.json.JSONObject;
 
 
-public class Door {
+public class Door implements Building {
   private final String id;
   private Status state;
 
@@ -36,7 +36,7 @@ public class Door {
   private void doAction(String action) {
     switch (action) {
       case Actions.OPEN:
-        if (closed) {
+        if (closed && state.getName()=="unlocked") {
           closed = false;
         } else {
           System.out.println("Can't open door " + id + " because it's already open");
@@ -50,22 +50,17 @@ public class Door {
         }
         break;
       case Actions.LOCK:
-        // TODO
-        if (state.locked() || !closed ) {
-          System.out.println("Can't lock the door " + id + " because it's already locked or it's open");
-        } else {
-
-
+        if (!closed) {
+          System.out.println("Can't lock the door " + id + " because it's already open");
+          break;
         }
-        break;
+        else {
+          state.locked();
+          break;
+        }
         // fall through
       case Actions.UNLOCK:
-        // TODO
-        if (!state.isLocked() || !closed ) {
-          System.out.println("Can't unlock the door " + id + " because it's already unlocked or it's open");
-        } else {
-          lock.setLocked(false);
-        }
+        state.unlock();
         break;
         // fall through
       case Actions.UNLOCK_SHORTLY:
@@ -87,10 +82,7 @@ public class Door {
   }
 
   public String getStateName() {
-    if (!state.isLocked())
-      return "unlocked";
-    else
-      return "locked";
+    return state.getName();
   }
 
   @Override
