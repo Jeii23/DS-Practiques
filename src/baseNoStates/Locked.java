@@ -2,12 +2,10 @@ package baseNoStates;
 
 public class Locked extends Status{
 
-  private String name;
   public Locked(Door door) {
     super(door);
-    name = "locked";
+    name = States.LOCKED;
   }
-  public String getName(){return name;}
 
 
   public void locked(){

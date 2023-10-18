@@ -4,20 +4,24 @@ import baseNoStates.requests.RequestReader;
 import org.json.JSONObject;
 
 
-public class Door implements Building {
+public class Door{
   private final String id;
   private Status state;
+  private Space from;
+  private Space to;
 
   public void setState(Status state) {
     this.state = state;
   }
 
   private boolean closed; // physically
-  public Door(String id) {
+  public Door(String id, Space from, Space to) {
    state = new Locked(this);
     this.id = id;
     closed = true;
-
+    this.from = from;
+    this.to = to;
+    this.to.addDoorGivingAccess(this);
   }
 //new doorstate(this)
   // new locked(this)

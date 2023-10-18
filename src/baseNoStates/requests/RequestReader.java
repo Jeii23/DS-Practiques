@@ -95,6 +95,8 @@ public class RequestReader implements Request {
       authorized = false;
       addReason("user doesn't exists");
     } else {
+
+      //Area fromSpace = door.getFrom();
       //TODO: get the who, where, when and what in order to decide, and if not
       // authorized add the reason(s)
       authorized = true;

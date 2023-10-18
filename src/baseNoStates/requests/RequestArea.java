@@ -1,7 +1,8 @@
 package baseNoStates.requests;
 
 import baseNoStates.Actions;
-import baseNoStates.Building;
+import baseNoStates.Area;
+import baseNoStates.Door;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -9,7 +10,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 
-public class RequestArea implements Request, Building {
+public class RequestArea implements Request {
   private final String credential;
   private final String action;
   private final String areaId;
@@ -61,26 +62,7 @@ public class RequestArea implements Request, Building {
             + "}";
   }
 
-  @Override
-  public void processRequest(RequestReader request) {
-    process();
-  }
 
-  @Override
-  public String getId() {
-    return areaId;
-  }
-
-  @Override
-  public String getStateName() {
-// TODO
-    return null;
-  }
-
-  @Override
-  public JSONObject toJson() {
-    return answerToJson();
-  }
   // processing the request of an area is creating the corresponding door requests and forwarding
   // them to all of its doors. For some it may be authorized and action will be done, for others
   // it won't be authorized and nothing will happen to them.
@@ -90,7 +72,7 @@ public class RequestArea implements Request, Building {
 
     // make the door requests and put them into the area request to be authorized later and
     // processed later
-    Floor area = DirectoryAreas.findAreaById(areaId);
+    Area area = DirectoryAreas.findAreaById(areaId);
     // an Area is a Space or a Partition
     if (area != null) {
       // is null when from the app we click on an action but no place is selected because
@@ -105,7 +87,10 @@ public class RequestArea implements Request, Building {
         // to each individual door request, that is read by the simulator/Flutter app
         requests.add(requestReader);
       }
+
+
     }
+
 
   }
 }
