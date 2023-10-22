@@ -17,13 +17,13 @@ public final class DirectoryDoors {
     Space hall = new Space("hall");
     Space room1 = new Space("room1");
     Space room2 = new Space("room2");
-    Partition groundFloor = new Partition("basement",new ArrayList<>(Arrays.asList(hall,room1,room2)));
+    Partition groundFloor = new Partition("ground_floor",new ArrayList<>(Arrays.asList(hall,room1,room2)));
 
     //floor 1
     Space room3 = new Space("room3");
     Space corridor = new Space("corridor");
     Space IT = new Space("IT");
-      Partition floor1 = new Partition("basement",new ArrayList<>(Arrays.asList(room3,corridor,IT)));
+      Partition floor1 = new Partition("floor1",new ArrayList<>(Arrays.asList(room3,corridor,IT)));
 
     //Building
     Space stairs = new Space("stairs");
@@ -56,7 +56,9 @@ public final class DirectoryDoors {
     System.out.println("door with id " + id + " not found");
     return null; // otherwise we get a Java error
   }
-
+  public static Area findAreaById(String id){
+    return building.findAreaById(id);
+  }
   // this is needed by RequestRefresh
   public static ArrayList<Door> getAllDoors() {
     System.out.println(allDoors);

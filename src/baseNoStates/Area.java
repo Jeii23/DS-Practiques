@@ -1,6 +1,7 @@
 package baseNoStates;
 import baseNoStates.requests.RequestReader;
 import org.json.JSONObject;
+import java.util.ArrayList;
 public abstract class Area {
   protected String id;
   public Area(String id){
@@ -10,7 +11,7 @@ public abstract class Area {
     return id;
   }
 
-  public Door[] getDoorsGivingAccess() {
+  public abstract ArrayList<Door> getDoorsGivingAccess();
 
-  }
+  public abstract Area findAreaById(String id);
 }

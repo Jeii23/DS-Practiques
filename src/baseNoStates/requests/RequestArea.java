@@ -1,19 +1,15 @@
 package baseNoStates.requests;
 
+import baseNoStates.*;
 
-import baseNoStates.Actions;
-import baseNoStates.Building;
-import baseNoStates.Door;
-import baseNoStates.Floor;
 import org.json.JSONArray;
 import org.json.JSONObject;
-
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 
-public class RequestArea implements Request, Building {
+public class RequestArea implements Request {
   private final String credential;
   private final String action;
   private final String areaId;
@@ -25,7 +21,7 @@ public class RequestArea implements Request, Building {
     this.credential = credential;
     this.areaId = areaId;
     assert action.equals(Actions.LOCK) || action.equals(Actions.UNLOCK)
-            : "invalid action " + action + " for an area request";
+        : "invalid action " + action + " for an area request";
     this.action = action;
     this.now = now;
   }
@@ -57,34 +53,14 @@ public class RequestArea implements Request, Building {
       requestsDoorsStr = requests.toString();
     }
     return "Request{"
-            + "credential=" + credential
-            + ", action=" + action
-            + ", now=" + now
-            + ", areaId=" + areaId
-            + ", requestsDoors=" + requestsDoorsStr
-            + "}";
+        + "credential=" + credential
+        + ", action=" + action
+        + ", now=" + now
+        + ", areaId=" + areaId
+        + ", requestsDoors=" + requestsDoorsStr
+        + "}";
   }
 
-  @Override
-  public void processRequest(RequestReader request) {
-    process();
-  }
-
-  @Override
-  public String getId() {
-    return areaId;
-  }
-
-  @Override
-  public String getStateName() {
-// TODO
-    return null;
-  }
-
-  @Override
-  public JSONObject toJson() {
-    return answerToJson();
-  }
   // processing the request of an area is creating the corresponding door requests and forwarding
   // them to all of its doors. For some it may be authorized and action will be done, for others
   // it won't be authorized and nothing will happen to them.
@@ -94,8 +70,7 @@ public class RequestArea implements Request, Building {
 
     // make the door requests and put them into the area request to be authorized later and
     // processed later
-
-    Floor area =  DirectoryAreas.findAreaById(areaId);
+    Area area = DirectoryDoors.findAreaById(areaId);
     // an Area is a Space or a Partition
     if (area != null) {
       // is null when from the app we click on an action but no place is selected because

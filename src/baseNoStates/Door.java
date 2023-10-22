@@ -13,6 +13,12 @@ public class Door{
   public void setState(Status state) {
     this.state = state;
   }
+  public Area getFrom() {
+    return from;
+  }
+  public Area getTo() {
+    return to;
+  }
 
   private boolean closed; // physically
   public Door(String id, Space from, Space to) {
@@ -22,6 +28,8 @@ public class Door{
     this.from = from;
     this.to = to;
     this.to.addDoorGivingAccess(this);
+    this.from.addDoorGivingAccess(this);
+
   }
 //new doorstate(this)
   // new locked(this)
@@ -105,4 +113,6 @@ public class Door{
     json.put("closed", closed);
     return json;
   }
+
+
 }

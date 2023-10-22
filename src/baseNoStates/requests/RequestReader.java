@@ -1,9 +1,7 @@
 package baseNoStates.requests;
 
-import baseNoStates.DirectoryDoors;
-import baseNoStates.DirectoryUsers;
-import baseNoStates.Door;
-import baseNoStates.User;
+import baseNoStates.*;
+
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
@@ -95,12 +93,26 @@ public class RequestReader implements Request {
       authorized = false;
       addReason("user doesn't exists");
     } else {
+      Area fromSpace = door.getFrom();
+      Area toSpace = door.getTo();
+      authorized = user.canAccess(fromSpace) && user.canAccess(toSpace);
 
-      //Area fromSpace = door.getFrom();
+      //
       //TODO: get the who, where, when and what in order to decide, and if not
       // authorized add the reason(s)
-      authorized = true;
     }
   }
 }
 
+
+
+
+
+
+
+
+
+
+/*
+
+      */
