@@ -95,7 +95,7 @@ public class RequestReader implements Request {
     } else {
       Area fromSpace = door.getFrom();
       Area toSpace = door.getTo();
-      authorized = user.canAccess(fromSpace) && user.canAccess(toSpace);
+      authorized = user.getGroup().canAccess(fromSpace) && user.getGroup().canAccess(toSpace) && user.getGroup().canDoAction(this.action);
 
       //
       //TODO: get the who, where, when and what in order to decide, and if not

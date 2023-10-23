@@ -28,7 +28,6 @@ public class Door{
     this.from = from;
     this.to = to;
     this.to.addDoorGivingAccess(this);
-    this.from.addDoorGivingAccess(this);
 
   }
 //new doorstate(this)

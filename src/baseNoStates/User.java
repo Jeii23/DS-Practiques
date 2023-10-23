@@ -1,17 +1,18 @@
 package baseNoStates;
-
 import java.util.ArrayList;
 
 public class User {
   private final String name;
   private final String credential;
-  private ArrayList<Area> areasAccess;
-  public User(String name, String credential, ArrayList<Area> areasAccess) {
+  private Group group;
+  public User(String name, String credential, Group group) {
     this.name = name;
     this.credential = credential;
-    this.areasAccess = areasAccess;
+    this.group = group;
+
   }
 
+  public Group getGroup(){return group;}
   public String getCredential() {
     return credential;
   }
@@ -21,16 +22,7 @@ public class User {
     return "User{name=" + name + ", credential=" + credential + "}";
   }
 
-  public boolean canAccess(Area space) {
-    if (areasAccess.get(0) == space) {
-      return true;
-    }
-    else {
-      for (Area access: areasAccess){
-        if(this.canAccess(access))
-          return this.canAccess(access);
-      }
-    }
-    return false;
-  }
+
+
+
 }
