@@ -7,7 +7,7 @@ public abstract class Status {
   public Status(Door door) {
     this.door =door;
   }
-public  String getName(){return name;}
+  public  String getName(){return name;}
   public abstract void locked();
   public abstract void unlock();
 

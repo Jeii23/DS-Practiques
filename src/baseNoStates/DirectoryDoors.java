@@ -9,6 +9,10 @@ public final class DirectoryDoors {
   private static Area building;
 
   public static void makeDoors() {
+
+    // Creem l'espai amb el nom indicat i introduïm aquest
+    // espai en un array de la partició que el conté.
+
     //Basement
     Space parking = new Space("parking");
     Partition basement = new Partition("basement",new ArrayList<>(Arrays.asList(parking)));
@@ -56,7 +60,11 @@ public final class DirectoryDoors {
     System.out.println("door with id " + id + " not found");
     return null; // otherwise we get a Java error
   }
+
+  // Aquesta funció el que fa es buscar dins el nostre array building, que conté totes les arees,
+  // l'àrea que es passa per parametre i ens la retorna.
   public static Area findAreaById(String id){
+
     return building.findAreaById(id);
   }
   // this is needed by RequestRefresh

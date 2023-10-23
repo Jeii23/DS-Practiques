@@ -4,9 +4,11 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 public abstract class Area {
   protected String id;
-  public Area(String id){
-    this.id=id;
+  //Constructor on inicialitzem la nostra àrea.
+  public Area(String id){this.id=id;
   }
+
+  //funció que ens retorna la id de l'àrea.
   public String getId(){
     return id;
   }

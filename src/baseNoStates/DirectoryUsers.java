@@ -27,6 +27,9 @@ public final class DirectoryUsers {
     Schedule scheduleNoPriv = new Schedule(pastDate, pastDate, noDays, midnight, midnight);
     ArrayList<Area> areaAccessnone = new ArrayList<Area>();
     ArrayList<String> actionsNoPriv = new ArrayList<String>();
+
+    //Creem el grup cap privilegi que utilitzarem dins la variable usuari per designar
+    //els usuaris que no poden fer res.
     Group noPrivilege = new Group(areaAccessnone, "no Privilege", actionsNoPriv,scheduleNoPriv);
     users.add(new User("Bernat", "12345",noPrivilege));
     users.add(new User("Blai", "77532",noPrivilege));
@@ -36,12 +39,17 @@ public final class DirectoryUsers {
     // week days 9-17h
     // just shortly unlock
     // ground floor, floor1, exterior, stairs (this, for all), that is, everywhere but the parking
+
+    //Creem l'array areaAccessMedium que guardarà totes les areesa les quals un usuari amb privilegi mitja (empleats)
+    //podrà accedir.
     ArrayList<Area> areaAccessMedium = new ArrayList<Area>();
 
     areaAccessMedium.add(DirectoryDoors.findAreaById("ground_floor"));
     areaAccessMedium.add(DirectoryDoors.findAreaById("floor1"));
     areaAccessMedium.add(DirectoryDoors.findAreaById("exterior"));
     areaAccessMedium.add(DirectoryDoors.findAreaById("stairs"));
+
+    // Creem un array on es troben les accions que pot realitzar l'usuari amb privilegi mitjà.
     ArrayList<String> employeeActions = new ArrayList<String>();
     employeeActions.add(Actions.OPEN);
     employeeActions.add(Actions.CLOSE);
@@ -53,6 +61,9 @@ public final class DirectoryUsers {
     Schedule scheduleEmployees = new Schedule(firstDayEmployees,lastDayEmployees,monToFri,
         LocalTime.of(9,0),LocalTime.of(17,0));
 
+    //Creem el grup empleats i l'inicialitzem amb les seves condicions
+    // i l'afegim com atribut de l'usuari.
+
     Group employees = new Group(areaAccessMedium, "employee", employeeActions,scheduleEmployees);
 
     users.add(new User("Ernest", "74984",employees));
@@ -63,7 +74,12 @@ public final class DirectoryUsers {
     // week days + saturday, 8-20h
     // all actions
     // all spaces
+
+    //Creem l'array areaAccessTotal que guardarà totes les areesa les quals un usuari amb privilegi total (managers)
+    //podrà accedir.
     ArrayList<Area> areaAccessTotal = new ArrayList<Area>();
+
+    // Creem un array on es troben les accions que pot realitzar l'usuari amb privilegi mitjà.
     ArrayList<String> managerAction = new ArrayList<String>();
     managerAction.add(Actions.OPEN);
     managerAction.add(Actions.CLOSE);
@@ -77,6 +93,8 @@ public final class DirectoryUsers {
     Schedule scheduleManagers = new Schedule(firstDayManagers,lastDayManagers,monToSat,
         LocalTime.of(8,0),LocalTime.of(20,0));
 
+    //Creem el grup managers i l'inicialitzem amb les seves condicions
+    // i l'afegim com atribut de l'usuari.
     Group managers = new Group(areaAccessTotal, "manager", managerAction,scheduleManagers);
     areaAccessTotal.add(DirectoryDoors.findAreaById("building"));
     users.add(new User("Manel", "95783",managers));

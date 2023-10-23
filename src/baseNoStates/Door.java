@@ -10,17 +10,24 @@ public class Door{
   private Space from;
   private Space to;
 
+//inicialitzem la variable state.
   public void setState(Status state) {
     this.state = state;
   }
+
+  //Funció que ens retorna des d'on venim
   public Area getFrom() {
     return from;
   }
+
+  //Funció que ens retorna cap a on anem
   public Area getTo() {
     return to;
   }
 
   private boolean closed; // physically
+
+ //inicialitzem la nostra variable Door
   public Door(String id, Space from, Space to) {
    state = new Locked(this);
     this.id = id;
@@ -92,6 +99,7 @@ public class Door{
     return id;
   }
 
+  //Funció que ens retorna l'estat de la porta
   public String getStateName() {
     return state.getName();
   }
