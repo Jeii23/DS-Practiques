@@ -49,6 +49,7 @@ public class Group {
     return false;
   }
 
+  //Funció que comprova si es troba dins l'horari d'accés
   public boolean isInSchedule(LocalDateTime now) {
     LocalDate currentDate = now.toLocalDate();
     LocalTime currentTime = now.toLocalTime();

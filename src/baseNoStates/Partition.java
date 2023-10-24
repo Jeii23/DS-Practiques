@@ -33,7 +33,7 @@ public ArrayList<Door> getDoorsGivingAccess(){
   return doors;
   }
 
-  //Realitzem recursivitat per trobar l'area amb l'ID q es passa com a paràmetre. Comença
+  //Realitzem recursivitat per trobar l'area amb l'ID que es passa com a paràmetre. Comença
   //comparant l'ID de l'area actual amb la que es passa i si coincideixen retorna true, si no,
   //es va d'àrea en àrea  i es segueix comprovant si els ID coincideixen, si ho fan retornen l'àrea, si no,
   //l'area no existeix i es null.

@@ -14,13 +14,20 @@ public class Space extends Area{
   }
 
   @Override
+
+  //en retorna la llista de portes a les que podem accedir
   public ArrayList<Door> getDoorsGivingAccess() {
     return doorsGivingAccess;
   }
 
+
+  //Funció que ens permet afegir una porta a l'array.
   public void addDoorGivingAccess(Door door) {
     doorsGivingAccess.add(door);
   }
+
+  //Funció que ens busca una àrea mitjançant el seu id, si la troba la retorna, si no,
+  // ens printa que no s'ha trobat.
   public  Area findAreaById(String id) {
     if (this.id.equals(id)) {
       return this;

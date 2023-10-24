@@ -6,6 +6,8 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 
 public class Schedule {
+
+  //Definim els atributs de la nostra classe i seguidament els inicialitzem.
   private LocalDate startDate;
   private LocalDate endDate;
   private ArrayList<DayOfWeek> daysOfWeek;
@@ -19,22 +21,30 @@ public class Schedule {
     this.startTime = startTime;
     this.endTime = endTime;
   }
+  //Funció que retorna la data de començament
   public LocalDate getStartDate() {
     return startDate;
   }
 
+
+  //Funció que retorna la data de finalització
   public LocalDate getEndDate() {
     return endDate;
   }
 
+  //Funció que retorna l'array de tots els dies que composen un setmana
   public ArrayList<DayOfWeek> getDaysOfWeek() {
     return daysOfWeek;
   }
+
+  //Funció que retorna l´'hora de començament
 
   public LocalTime getStartTime() {
     return startTime;
   }
 
+
+  //Funció que retorna l'hora de finalització
   public LocalTime getEndTime() {
     return endTime;
   }
