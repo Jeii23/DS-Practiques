@@ -2,6 +2,7 @@ package baseNoStates;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
 
@@ -47,6 +48,22 @@ public class Schedule {
   //Funció que retorna l'hora de finalització
   public LocalTime getEndTime() {
     return endTime;
+  }
+
+  public boolean isInSchedule(LocalDateTime now) { //Ceder espacio en schedule
+    LocalDate currentDate = now.toLocalDate();
+    LocalTime currentTime = now.toLocalTime();
+    DayOfWeek currentDayOfWeek = now.getDayOfWeek();
+
+    if ((currentDate.isEqual(startDate) || currentDate.isAfter(startDate)) &&
+        (currentDate.isEqual(endDate) || currentDate.isBefore(endDate)) &&
+        daysOfWeek.contains(currentDayOfWeek) &&
+        (currentTime.equals(startTime) || currentTime.isAfter(startTime)) &&
+        (currentTime.equals(endTime) || currentTime.isBefore(endTime))) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
 }

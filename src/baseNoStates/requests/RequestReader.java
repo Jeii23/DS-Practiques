@@ -98,7 +98,7 @@ public class RequestReader implements Request {
       authorized = user.getGroup().canAccess(fromSpace)
           && user.getGroup().canAccess(toSpace)
           && user.getGroup().canDoAction(this.action)
-          && user.getGroup().isInSchedule(now);
+          && user.getGroup().getSchedule().isInSchedule(now);
       //
       //TODO: get the who, where, when and what in order to decide, and if not
       // authorized add the reason(s)

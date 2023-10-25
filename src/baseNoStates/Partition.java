@@ -1,7 +1,4 @@
 package baseNoStates;
-import baseNoStates.requests.RequestReader;
-import org.json.JSONArray;
-import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +13,15 @@ public class Partition extends Area {
     this.areas=area;
   }
 
-
+  @Override
+  public List<Area> getAreas() {
+    List<Area> allAreas = new ArrayList<>();
+    for (Area area : areas) {
+      allAreas.add(area);
+      allAreas.addAll(area.getAreas());
+    }
+    return allAreas;
+  }
   // Aquesta funció crea una llista de portes que conté cada area. Primer recorrem l'array
   //areas i dins recorrem les seves portes, si no conté la porta, l'afegim a l'array
   //de portes d'aquesta area. Retornem l'array de portes.

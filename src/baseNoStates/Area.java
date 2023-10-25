@@ -1,7 +1,7 @@
 package baseNoStates;
-import baseNoStates.requests.RequestReader;
-import org.json.JSONObject;
 import java.util.ArrayList;
+import java.util.List;
+
 public abstract class Area {
   protected String id;
   //Constructor on inicialitzem la nostra àrea.
@@ -16,4 +16,7 @@ public abstract class Area {
   public abstract ArrayList<Door> getDoorsGivingAccess();
 
   public abstract Area findAreaById(String id);
+  public List<Area> getAreas() {
+    return new ArrayList<>();
+  }
 }
