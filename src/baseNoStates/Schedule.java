@@ -15,13 +15,15 @@ public class Schedule {
   private LocalTime startTime;
   private LocalTime endTime;
 
-  public Schedule(LocalDate startDate, LocalDate endDate, ArrayList<DayOfWeek> daysOfWeek, LocalTime startTime, LocalTime endTime) {
+  public Schedule(LocalDate startDate, LocalDate endDate,
+                  ArrayList<DayOfWeek> daysOfWeek, LocalTime startTime, LocalTime endTime) {
     this.startDate = startDate;
     this.endDate = endDate;
     this.daysOfWeek = daysOfWeek;
     this.startTime = startTime;
     this.endTime = endTime;
   }
+
   //Funció que retorna la data de començament
   public LocalDate getStartDate() {
     return startDate;
@@ -55,11 +57,11 @@ public class Schedule {
     LocalTime currentTime = now.toLocalTime();
     DayOfWeek currentDayOfWeek = now.getDayOfWeek();
 
-    if ((currentDate.isEqual(startDate) || currentDate.isAfter(startDate)) &&
-        (currentDate.isEqual(endDate) || currentDate.isBefore(endDate)) &&
-        daysOfWeek.contains(currentDayOfWeek) &&
-        (currentTime.equals(startTime) || currentTime.isAfter(startTime)) &&
-        (currentTime.equals(endTime) || currentTime.isBefore(endTime))) {
+    if ((currentDate.isEqual(startDate) || currentDate.isAfter(startDate))
+        && (currentDate.isEqual(endDate) || currentDate.isBefore(endDate))
+        && daysOfWeek.contains(currentDayOfWeek)
+        && (currentTime.equals(startTime) || currentTime.isAfter(startTime))
+        && (currentTime.equals(endTime) || currentTime.isBefore(endTime))) {
       return true;
     } else {
       return false;

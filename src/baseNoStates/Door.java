@@ -4,13 +4,13 @@ import baseNoStates.requests.RequestReader;
 import org.json.JSONObject;
 
 
-public class Door{
+public class Door {
   private final String id;
   private Status state;
   private Space from;
   private Space to;
 
-//inicialitzem la variable state.
+  //inicialitzem la variable state.
   public void setState(Status state) {
     this.state = state;
   }
@@ -27,9 +27,9 @@ public class Door{
 
   private boolean closed; // physically
 
- //inicialitzem la nostra variable Door
+  //inicialitzem la nostra variable Door
   public Door(String id, Space from, Space to) {
-   state = new Locked(this);
+    state = new Locked(this);
     this.id = id;
     closed = true;
     this.from = from;
@@ -37,7 +37,8 @@ public class Door{
     this.to.addDoorGivingAccess(this);
 
   }
-//new doorstate(this)
+
+  //new doorstate(this)
   // new locked(this)
   public void processRequest(RequestReader request) {
     // it is the Door that process the request because the door has and knows
@@ -54,7 +55,7 @@ public class Door{
   private void doAction(String action) {
     switch (action) {
       case Actions.OPEN:
-        if (closed && state.getName()=="unlocked") {
+        if (closed && state.getName() == "unlocked") {
           closed = false;
         } else {
           System.out.println("Can't open door " + id + " because it's already open");
@@ -71,8 +72,7 @@ public class Door{
         if (!closed) {
           System.out.println("Can't lock the door " + id + " because it's already open");
           break;
-        }
-        else {
+        } else {
           state.locked();
           break;
         }
@@ -80,7 +80,7 @@ public class Door{
       case Actions.UNLOCK:
         state.unlock();
         break;
-        // fall through
+      // fall through
       case Actions.UNLOCK_SHORTLY:
         // TODO
         System.out.println("Action " + action + " not implemented yet");

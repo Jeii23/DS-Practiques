@@ -1,10 +1,12 @@
 package baseNoStates.requests;
 
-import baseNoStates.*;
-
+import baseNoStates.Area;
+import baseNoStates.DirectoryDoors;
+import baseNoStates.DirectoryUsers;
+import baseNoStates.Door;
+import baseNoStates.User;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -50,15 +52,15 @@ public class RequestReader implements Request {
       userName = "unknown";
     }
     return "Request{"
-            + "credential=" + credential
-            + ", userName=" + userName
-            + ", action=" + action
-            + ", now=" + now
-            + ", doorID=" + doorId
-            + ", closed=" + doorClosed
-            + ", authorized=" + authorized
-            + ", reasons=" + reasons
-            + "}";
+        + "credential=" + credential
+        + ", userName=" + userName
+        + ", action=" + action
+        + ", now=" + now
+        + ", doorID=" + doorId
+        + ", closed=" + doorClosed
+        + ", authorized=" + authorized
+        + ", reasons=" + reasons
+        + "}";
   }
 
   public JSONObject answerToJson() {
@@ -117,4 +119,4 @@ public class RequestReader implements Request {
 
 /*
 
-      */
+ */

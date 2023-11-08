@@ -1,6 +1,6 @@
 package baseNoStates;
 
-public class Locked extends Status{
+public class Locked extends Status {
 
   //Inicialitzem Locked, amb ajuda del costructor.
   public Locked(Door door) {
@@ -9,12 +9,12 @@ public class Locked extends Status{
   }
 
 
-  public void locked(){
+  public void locked() {
     System.out.println("Can't lock the door " + this.door.getId() + " because it's already locked");
   }
 
   //
-  public void unlock(){
+  public void unlock() {
     this.door.setState(new Unlock(this.door));
   }
 

@@ -1,4 +1,5 @@
 package baseNoStates;
+
 import java.util.ArrayList;
 
 public class User {
@@ -15,7 +16,9 @@ public class User {
   }
 
   //Funció que retorna el grup al qual pertany l'usuari.
-  public Group getGroup(){return group;}
+  public Group getGroup() {
+    return group;
+  }
 
   //Funció que retorna les credencials de l'usuari.
   public String getCredential() {
@@ -26,8 +29,6 @@ public class User {
   public String toString() {
     return "User{name=" + name + ", credential=" + credential + "}";
   }
-
-
 
 
 }

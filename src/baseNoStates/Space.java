@@ -1,12 +1,10 @@
 package baseNoStates;
 
-import baseNoStates.requests.RequestReader;
-import org.json.JSONObject;
-
 import java.util.ArrayList;
 
-public class Space extends Area{
+public class Space extends Area {
   private ArrayList<Door> doorsGivingAccess;
+
   public Space(String id) {
     super(id);
     doorsGivingAccess = new ArrayList<Door>();
@@ -28,7 +26,7 @@ public class Space extends Area{
 
   //Funció que ens busca una àrea mitjançant el seu id, si la troba la retorna, si no,
   // ens printa que no s'ha trobat.
-  public  Area findAreaById(String id) {
+  public Area findAreaById(String id) {
     if (this.id.equals(id)) {
       return this;
     }
