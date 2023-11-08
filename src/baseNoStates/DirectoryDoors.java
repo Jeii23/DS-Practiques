@@ -2,7 +2,7 @@ package baseNoStates;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-
+//singleton
 public final class DirectoryDoors {
   private static ArrayList<Door> allDoors;
 

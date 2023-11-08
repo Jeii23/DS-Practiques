@@ -5,7 +5,15 @@ import java.util.Arrays;
 import java.time.*;
 import baseNoStates.DirectoryDoors;
 import baseNoStates.Area;
+//singleton
 
+//aplicar patron visitor en space y partition
+//la logica de find area by id los queremos sacar de ahí
+//las clases de space y partition limpias
+//Find area by id se convertira en una clase
+//Implementamos interaz visitor visitpartition y visitspace
+//en clase de space y partition comentamos findareabyID y getDoorsGivingAccess
+//accept visitor (
 public final class DirectoryUsers {
   private static final ArrayList<User> users = new ArrayList<>();
 
