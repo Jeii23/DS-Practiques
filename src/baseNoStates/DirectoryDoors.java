@@ -6,11 +6,19 @@ import java.util.Arrays;
 //singleton
 public final class DirectoryDoors {
   private static ArrayList<Door> allDoors;
+  private static DirectoryDoors uniqueInstance = null;
+
+  public static DirectoryDoors getInstance() {
+    if (uniqueInstance == null) {
+      uniqueInstance = new DirectoryDoors();
+    }
+    return uniqueInstance;
+  }
 
   private static Area building;
 
   public static void makeDoors() {
-
+    getInstance();
     // Creem l'espai amb el nom indicat i introduïm aquest
     // espai en un array de la partició que el conté.
 

@@ -17,9 +17,19 @@ import java.util.Arrays;
 //en clase de space y partition comentamos findareabyID y getDoorsGivingAccess
 //accept visitor (
 public final class DirectoryUsers {
+
+  private static DirectoryUsers uniqueInstance = null;
+
+  public static DirectoryUsers getInstance() {
+    if (uniqueInstance == null) {
+      uniqueInstance = new DirectoryUsers();
+    }
+    return uniqueInstance;
+  }
   private static final ArrayList<User> users = new ArrayList<>();
 
   public static void makeUsers() {
+    getInstance();
     //Creating Monday to Friday and monday to saturday array
     ArrayList<DayOfWeek> monToFri = new
         ArrayList<>(Arrays.asList(DayOfWeek.MONDAY,
