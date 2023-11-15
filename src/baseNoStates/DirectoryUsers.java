@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Arrays;
+import ch.qos.logback.classic.Logger;
 
 
 //singleton
@@ -16,8 +17,13 @@ import java.util.Arrays;
 //Implementamos interaz visitor visitpartition y visitspace
 //en clase de space y partition comentamos findareabyID y getDoorsGivingAccess
 //accept visitor (
-public final class DirectoryUsers {
 
+
+//el visitor se hace una interfaz
+// coje toda la información de las clases y
+
+public final class DirectoryUsers {
+  Logger logger;
   private static DirectoryUsers uniqueInstance = null;
 
   public static DirectoryUsers getInstance() {
@@ -26,6 +32,7 @@ public final class DirectoryUsers {
     }
     return uniqueInstance;
   }
+
   private static final ArrayList<User> users = new ArrayList<>();
 
   public static void makeUsers() {
@@ -136,12 +143,13 @@ public final class DirectoryUsers {
   }
 
   public static User findUserByCredential(String credential) {
+    Logger logger = null;
     for (User user : users) {
       if (user.getCredential().equals(credential)) {
         return user;
       }
     }
-    System.out.println("user with credential " + credential + " not found");
+    logger.info("user with credential " + credential + " not found");
     return null; // otherwise we get a Java error
   }
 

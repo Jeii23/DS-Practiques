@@ -1,10 +1,12 @@
 package baseNoStates;
 
 import baseNoStates.requests.RequestReader;
+import ch.qos.logback.classic.Logger;
 import org.json.JSONObject;
 
 
 public class Door {
+  Logger logger;
   private final String id;
   private Status state;
   private Space from;
@@ -47,7 +49,7 @@ public class Door {
       String action = request.getAction();
       doAction(action);
     } else {
-      System.out.println("not authorized");
+      logger.warn("not authorized");
     }
     request.setDoorStateName(getStateName());
   }
@@ -58,19 +60,19 @@ public class Door {
         if (closed && state.getName() == "unlocked") {
           closed = false;
         } else {
-          System.out.println("Can't open door " + id + " because it's already open");
+          logger.info("Can't open door " + id + " because it's already open");
         }
         break;
       case Actions.CLOSE:
         if (closed) {
-          System.out.println("Can't close door " + id + " because it's already closed");
+          logger.info("Can't close door " + id + " because it's already closed");
         } else {
           closed = true;
         }
         break;
       case Actions.LOCK:
         if (!closed) {
-          System.out.println("Can't lock the door " + id + " because it's already open");
+          logger.info("Can't lock the door " + id + " because it's already open");
           break;
         } else {
           state.locked();
@@ -83,7 +85,7 @@ public class Door {
       // fall through
       case Actions.UNLOCK_SHORTLY:
         // TODO
-        System.out.println("Action " + action + " not implemented yet");
+        logger.info("Action " + action + " not implemented yet");
         break;
       default:
         assert false : "Unknown action " + action;

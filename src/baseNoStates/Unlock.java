@@ -1,6 +1,9 @@
 package baseNoStates;
 
+import java.util.logging.Logger;
+
 public class Unlock extends Status {
+  Logger logger;
 
   //Inicialitzem Unlock
   public Unlock(Door door) {
@@ -16,7 +19,7 @@ public class Unlock extends Status {
   }
 
   public void unlock() {
-    System.out.println("Can't unlock the door "
+    logger.info("Can't unlock the door "
         + door.getId() + " because it's already unlocked or it's open");
   }
 

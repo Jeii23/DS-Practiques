@@ -1,9 +1,12 @@
 package baseNoStates;
 
 import java.util.ArrayList;
+import ch.qos.logback.classic.Logger;
 
 public class Space extends Area {
+
   private ArrayList<Door> doorsGivingAccess;
+  Logger logger;
 
   public Space(String id) {
     super(id);
@@ -30,7 +33,7 @@ public class Space extends Area {
     if (this.id.equals(id)) {
       return this;
     }
-    System.out.println("Area with id " + id + " not found");
+    logger.warn("Area with id " + id + " not found");
     return null; // otherwise we get a Java error
   }
 }

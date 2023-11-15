@@ -1,5 +1,6 @@
 package baseNoStates;
 
+import ch.qos.logback.classic.Logger;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -63,12 +64,13 @@ public final class DirectoryDoors {
   }
 
   public static Door findDoorById(String id) {
+    Logger logger = null;
     for (Door door : allDoors) {
       if (door.getId().equals(id)) {
         return door;
       }
     }
-    System.out.println("door with id " + id + " not found");
+    logger.warn("door with id " + id + " not found");
     return null; // otherwise we get a Java error
   }
 
@@ -81,7 +83,8 @@ public final class DirectoryDoors {
 
   // this is needed by RequestRefresh
   public static ArrayList<Door> getAllDoors() {
-    System.out.println(allDoors);
+    Logger logger = null;
+    logger.info(String.valueOf(allDoors));
     return allDoors;
   }
 
