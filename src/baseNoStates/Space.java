@@ -36,4 +36,8 @@ public class Space extends Area {
     logger.warn("Area with id " + id + " not found");
     return null; // otherwise we get a Java error
   }
+  @Override
+  public void acceptVisitor(Visitor v) {
+    v.visitSpace(this);
+  }
 }

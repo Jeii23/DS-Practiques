@@ -55,5 +55,9 @@ public class Partition extends Area {
     }
     return null;
   }
+  @Override
+  public void acceptVisitor(Visitor v) {
+    v.visitPartition(this);
+  }
 }
 

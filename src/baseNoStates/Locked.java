@@ -1,6 +1,6 @@
 package baseNoStates;
 
-import java.util.logging.Logger;
+import ch.qos.logback.classic.Logger;
 
 public class Locked extends Status {
   Logger logger;
@@ -13,7 +13,7 @@ public class Locked extends Status {
 
 
   public void locked() {
-    logger.warning("Can't lock the door " + this.door.getId() + " because it's already locked");
+    logger.warn("Can't lock the door " + this.door.getId() + " because it's already locked");
   }
 
   //

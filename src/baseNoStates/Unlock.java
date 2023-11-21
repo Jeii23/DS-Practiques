@@ -1,6 +1,6 @@
 package baseNoStates;
 
-import java.util.logging.Logger;
+import ch.qos.logback.classic.Logger;
 
 public class Unlock extends Status {
   Logger logger;

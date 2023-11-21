@@ -1,12 +1,9 @@
 package baseNoStates;
 
-//public interface Visitor {
- // void visitPartition(Partition partition);
-//}
+public interface Visitor {
+  void visitSpace(Space space);
+  void visitPartition(Partition partition);
+  Area findAreaById(String id);
 
-//public class visitor implement visitor
- //   visitor paeririron paeririron
-//for area area : partiotion get ares
-  //  area.acceptvisitor(this);
+}
 
-//doors.addall()
