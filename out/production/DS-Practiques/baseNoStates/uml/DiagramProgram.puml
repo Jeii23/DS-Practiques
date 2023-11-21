@@ -1,0 +1,153 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+abstract class Area {
+  - String id
+  + Area(String id)
+  + String getId()
+  + abstract ArrayList<Door> getDoorsGivingAccess()
+  + abstract Area findAreaById(String id)
+}
+
+class Actions {
+  - {static} final String LOCK
+  - {static} final String UNLOCK
+  - {static} final String UNLOCK_SHORTLY
+  - {static} final String OPEN
+  - {static} final String CLOSE
+}
+
+class DirectoryDoors {
+  - {static} ArrayList<Door> allDoors
+  - {static} Area building
+  + {static} makeDoors()
+  + {static} findDoorById(String id) : Door
+  + {static} findAreaById(String id) : Area
+  + {static} getAllDoors() : ArrayList<Door>
+}
+
+class DirectoryUsers {
+  - {static} final ArrayList<User> users
+  + {static} makeUsers()
+  + {static} findUserByCredential(credential : String) : User
+}
+
+class Door {
+  - final String id
+  - Status state
+  - Space from
+  - Space to
+  - boolean closed
+  + Door(String id, Space from, Space to)
+  + void setState(Status state)
+  + Area getFrom()
+  + Area getTo()
+  + void processRequest(RequestReader request)
+  + boolean isClosed()
+  + String getId()
+  + String getStateName()
+  + String toString()
+  + JSONObject toJson()
+}
+
+class User {
+    - final String name
+    - final String credential
+    - Group group
+    + User(String name, String credential, Group group)
+    + Group getGroup()
+    + String getCredential()
+    + String toString()
+}
+
+class Group {
+    - ArrayList<Area> areasAccess
+    - String name
+    - ArrayList<String> actions
+    - Schedule schedule
+    + Group(ArrayList<Area> areasAccess, String name, ArrayList<String> actions, Schedule schedule)
+    + boolean canAccess(Area space)
+    + boolean canDoAction(String action)
+    + boolean isInSchedule(LocalDateTime now)
+}
+
+class Locked extends Status{
+    + Locked(Door door)
+    + void locked()
+    + void unlock()
+}
+
+class Main {
+  	+ {static} main(String[] args)
+}
+
+class Partition extends Area{
+  	- ArrayList<Area> areas
+  	+ Partition(String id, ArrayList<Area> area)
+  	+ ArrayList<Door> getDoorsGivingAccess()
+  	+ Area findAreaById(String id)
+}
+
+class Schedule {
+  	- LocalDate startDate
+  	- LocalDate endDate
+  	- ArrayList<DayOfWeek> daysOfWeek
+  	- LocalTime startTime
+  	- LocalTime endTime
+  	+ Schedule(LocalDate startDate, LocalDate endDate, ArrayList<DayOfWeek> daysOfWeek, LocalTime startTime, LocalTime endTime)
+  	+ LocalDate getStartDate()
+  	+ LocalDate getEndDate()
+  	+ ArrayList<DayOfWeek> getDaysOfWeek()
+  	+ LocalTime getStartTime()
+  	+ LocalTime getEndTime()
+}
+
+class Space extends Area{
+  	- ArrayList<Door> doorsGivingAccess
+  	+ Space(String id)
+  	+ ArrayList<Door> getDoorsGivingAccess()
+  	+ void addDoorGivingAccess(Door door)
+  	+ Area findAreaById(String id)
+}
+
+class States {
+  	+ {static} final String UNLOCKED = "unlocked"
+  	+ {static} final String LOCKED = "locked"
+  	+ {static} final String UNLOCKED_SHORTLY = "unlocked_shortly"
+  	+ {static} final String PROPPED = "propped"
+}
+
+abstract class Status {
+  	- Door door
+  	- String name
+  	+ Status(Door door)
+  	+ String getName()
+  	+ abstract void locked()
+  	+ abstract void unlock()
+}
+
+class Unlock extends Status{
+  	+ Unlock(Door door)
+  	+ void locked()
+  	+ void unlock()
+}
+
+class UnlockShortly extends Status{
+  	+ UnlockShortly(Door door)
+  	+ void locked()
+  	+ void unlock()
+}
+
+
+
+Group --> Schedule : "Schedule"
+DirectoryDoors --> "*" Door : "allDoors"
+DirectoryUsers --> "*" User : "users"
+User --> Group : "group"
+Group -->  Area : "areasAccess"
+Door --> Space : from, to
+Door --> Status : state
+Space --> Door : doorsGivingAccess
+Partition *---> Area : Areas
+Status --> Door : door
+@enduml

@@ -1,11 +1,15 @@
 package baseNoStates;
 
 import ch.qos.logback.classic.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 
 //singleton
 public final class DirectoryDoors {
+  private static final org.slf4j.Logger logger = LoggerFactory.getLogger(DirectoryDoors.class);
+
   private static ArrayList<Door> allDoors;
   private static DirectoryDoors uniqueInstance = null;
 
@@ -64,7 +68,6 @@ public final class DirectoryDoors {
   }
 
   public static Door findDoorById(String id) {
-    Logger logger = null;
     for (Door door : allDoors) {
       if (door.getId().equals(id)) {
         return door;
@@ -77,13 +80,13 @@ public final class DirectoryDoors {
   // Aquesta funció el que fa es buscar dins el nostre array building, que conté totes les arees,
   // l'àrea que es passa per parametre i ens la retorna.
   public static Area findAreaById(String id) {
-
-    return building.findAreaById(id);
+    Visitor visitor = new FindAreaByIdVisitor(id);
+    building.acceptVisitor(visitor);
+    return visitor.findAreaById(id);
   }
 
   // this is needed by RequestRefresh
   public static ArrayList<Door> getAllDoors() {
-    Logger logger = null;
     logger.info(String.valueOf(allDoors));
     return allDoors;
   }

@@ -1,9 +1,10 @@
 package baseNoStates;
 
-import ch.qos.logback.classic.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class Unlock extends Status {
-  Logger logger;
+  private static final Logger logger = LoggerFactory.getLogger(Unlock.class);
 
   //Inicialitzem Unlock
   public Unlock(Door door) {

@@ -13,15 +13,12 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import ch.qos.logback.classic.Logger;
 import java.util.StringTokenizer;
 
-
 // Based on
-// https://www.ssaurel.com/blog/create-a-simple-http-web-server-in-java
+// https://www.ssaurel.com/bºog/create-a-simple-http-web-server-in-java
 // http://www.jcgonzalez.com/java-socket-mini-server-http-example
 public class WebServer {
-  Logger logger;
   private static final int PORT = 8080; // port to listen connection
   private static final DateTimeFormatter formatter =
       DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm");
@@ -109,15 +106,15 @@ public class WebServer {
         out.close();
         insocked.close(); // we close socket connection
       } catch (Exception e) {
-        logger.error("Exception : " + e);
+        System.err.println("Exception : " + e);
       }
     }
 
     private Request makeRequest(String[] tokens) {
       // always return request because it contains the answer for the Javascript client
-      logger.info("tokens : ");
+      System.out.print("tokens : ");
       for (String token : tokens) {
-        logger.info(token + ", ");
+        System.out.print(token + ", ");
       }
       System.out.println();
 

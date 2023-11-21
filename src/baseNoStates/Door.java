@@ -1,12 +1,13 @@
 package baseNoStates;
 
 import baseNoStates.requests.RequestReader;
-import ch.qos.logback.classic.Logger;
 import org.json.JSONObject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 
 public class Door {
-  Logger logger;
+  private static final Logger logger = LoggerFactory.getLogger(Door.class);
   private final String id;
   private Status state;
   private Space from;

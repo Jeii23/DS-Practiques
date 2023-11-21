@@ -6,6 +6,7 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import ch.qos.logback.classic.Logger;
+import org.slf4j.LoggerFactory;
 
 
 //singleton
@@ -23,7 +24,8 @@ import ch.qos.logback.classic.Logger;
 // coje toda la información de las clases y
 
 public final class DirectoryUsers {
-  Logger logger;
+  private static final org.slf4j.Logger logger = LoggerFactory.getLogger(DirectoryUsers.class);
+
   private static DirectoryUsers uniqueInstance = null;
 
   public static DirectoryUsers getInstance() {
@@ -143,7 +145,6 @@ public final class DirectoryUsers {
   }
 
   public static User findUserByCredential(String credential) {
-    Logger logger = null;
     for (User user : users) {
       if (user.getCredential().equals(credential)) {
         return user;

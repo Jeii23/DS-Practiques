@@ -1,10 +1,14 @@
 package baseNoStates;
 
-public class visitorArea implements Visitor{
+import java.util.ArrayList;
+
+public class FindAreaByIdVisitor implements Visitor {
   private String id;
   private Area foundArea;
 
-
+  public FindAreaByIdVisitor(String idToFind) {
+    this.id = idToFind;
+  }
 
   @Override
   public void visitSpace(Space space) {
@@ -17,18 +21,22 @@ public class visitorArea implements Visitor{
   public void visitPartition(Partition partition) {
     if (partition.getId().equals(id)) {
       foundArea = partition;
+      return;
     } else {
       for (Area area : partition.getAreas()) {
         area.acceptVisitor(this);
+
       }
     }
   }
 
   @Override
   public Area findAreaById(String id) {
-    this.id = id;
-    this.foundArea = null; // resetea foundArea antes de buscar
-
     return foundArea;
+  }
+
+  @Override
+  public ArrayList<Door> getDoorsGivingAccess() {
+    return null;
   }
 }

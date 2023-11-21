@@ -1,9 +1,10 @@
 package baseNoStates;
 
-import ch.qos.logback.classic.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class Locked extends Status {
-  Logger logger;
+  private static final Logger logger = LoggerFactory.getLogger(Locked.class);
 
   //Inicialitzem Locked, amb ajuda del costructor.
   public Locked(Door door) {
