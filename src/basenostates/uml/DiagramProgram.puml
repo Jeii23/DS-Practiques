@@ -5,8 +5,8 @@ abstract class Area {
   - String id
   + Area(String id)
   + String getId()
-  + abstract ArrayList<Door> getDoorsGivingAccess()
-  + abstract Area findAreaById(String id)
+  + abstract void acceptVisitor(Visitor v)
+  + List<Area> getArray()
 }
 
 class Actions {
@@ -84,8 +84,9 @@ class Main {
 class Partition extends Area{
   	- ArrayList<Area> areas
   	+ Partition(String id, ArrayList<Area> area)
-  	+ ArrayList<Door> getDoorsGivingAccess()
-  	+ Area findAreaById(String id)
+  	+ ArrayList<Area> getArray()
+  	+ void acceptVisitor(Visitor v)
+
 }
 
 class Schedule {
@@ -138,8 +139,38 @@ class UnlockShortly extends Status{
   	+ void unlock()
 }
 
+interface Visitor {
+  + void visitSpace(Space space)
+  + void visitPartition(Partition partition)
+  + Area findAreaById(String id)
+  + ArrayList<Door> getDoorsGivingAccess()
+  + List<Area> getArea(Area partition)
+}
 
+class FindAreaByIdVisitor implements Visitor {
+  - String id
+  - Area foundArea
+  + FindAreaByIdVisitor(String idToFind)
+  + void visitSpace(Space space)
+  + void visitPartition(Partition partition)
+  + Area findAreaById(String id)
+  + ArrayList<Door> getDoorsGivingAccess()
+    + List<Area> getArea(Area partition)
+}
 
+class GetDoorsGivingAccessVisitor implements Visitor {
+  - ArrayList<Door> doorsGivingAccess
+  + GetDoorsGivingAccessVisitor()
+  + void visitSpace(Space space)
+  + void visitPartition(Partition partition)
+  + Area findAreaById(String id)
+  + ArrayList<Door> getDoorsGivingAccess()
+    + List<Area> getArea(Area partition)
+}
+
+main --> DirectoryUsers
+main --> DirectoryDoors
+main --> Visitor
 Group --> Schedule : "Schedule"
 DirectoryDoors --> "*" Door : "allDoors"
 DirectoryUsers --> "*" User : "users"
