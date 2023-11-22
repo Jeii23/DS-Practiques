@@ -25,13 +25,8 @@ public class Partition extends Area {
    * Overrides the getAreas method in the base class.
    */
   @Override
-  public List<Area> getAreas() {
-    List<Area> allAreas = new ArrayList<>();
-    for (Area area : areas) {
-      allAreas.add(area);
-      allAreas.addAll(area.getAreas());
-    }
-    return allAreas;
+  public List<Area> getArray() {
+    return areas;
   }
 
   /**
@@ -43,4 +38,3 @@ public class Partition extends Area {
     v.visitPartition(this);
   }
 }
-

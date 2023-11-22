@@ -37,7 +37,8 @@ public abstract class Area {
    *
    * @return An empty list of areas.
    */
-  public List<Area> getAreas() {
+  public List<Area> getArray() {
     return new ArrayList<>();
   }
+
 }

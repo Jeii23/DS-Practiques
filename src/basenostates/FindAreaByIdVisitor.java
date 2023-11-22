@@ -1,6 +1,7 @@
 package basenostates;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A visitor that finds an area by its unique identifier.
@@ -39,7 +40,7 @@ public class FindAreaByIdVisitor implements Visitor {
       foundArea = partition;
       return;
     } else {
-      for (Area area : partition.getAreas()) {
+      for (Area area : getArea(partition)) {
         area.acceptVisitor(this);
 
       }
@@ -61,4 +62,15 @@ public class FindAreaByIdVisitor implements Visitor {
   public ArrayList<Door> getDoorsGivingAccess() {
     return null;
   }
+
+  @Override
+  public List<Area> getArea(Area partition) {
+    List<Area> allAreas = new ArrayList<>();
+    for (Area area : partition.getArray()) {
+      allAreas.add(area);
+      allAreas.addAll(getArea(area));
+    }
+    return allAreas;
+  }
+
 }
