@@ -9,25 +9,16 @@ import ch.qos.logback.classic.Logger;
 import org.slf4j.LoggerFactory;
 
 
-//singleton
 
-//aplicar patron visitor en space y partition
-//la logica de find area by id los queremos sacar de ahí
-//las clases de space y partition limpias
-//Find area by id se convertira en una clase
-//Implementamos interaz visitor visitpartition y visitspace
-//en clase de space y partition comentamos findareabyID y getDoorsGivingAccess
-//accept visitor (
-
-
-//el visitor se hace una interfaz
-// coje toda la información de las clases y
-
+/**
+ * Represents a directory of users in the system. Implements the Singleton pattern.
+ */
 public final class DirectoryUsers {
   private static final org.slf4j.Logger logger = LoggerFactory.getLogger(DirectoryUsers.class);
 
   private static DirectoryUsers uniqueInstance = null;
 
+  // Singleton pattern: Ensure only one instance is created.
   public static DirectoryUsers getInstance() {
     if (uniqueInstance == null) {
       uniqueInstance = new DirectoryUsers();
@@ -37,6 +28,7 @@ public final class DirectoryUsers {
 
   private static final ArrayList<User> users = new ArrayList<>();
 
+  // Create user instances with specific privileges.
   public static void makeUsers() {
     getInstance();
     //Creating Monday to Friday and monday to saturday array
@@ -57,8 +49,7 @@ public final class DirectoryUsers {
     ArrayList<Area> areaAccessnone = new ArrayList<Area>();
     ArrayList<String> actionsNoPriv = new ArrayList<String>();
 
-    //Creem el grup cap privilegi que utilitzarem dins la variable usuari per designar
-    //els usuaris que no poden fer res.
+    // Create a group with no privileges for users who cannot perform any actions.
     Group noPrivilege = new Group(areaAccessnone, "no Privilege", actionsNoPriv, scheduleNoPriv);
     users.add(new User("Bernat", "12345", noPrivilege));
     users.add(new User("Blai", "77532", noPrivilege));
@@ -69,8 +60,7 @@ public final class DirectoryUsers {
     // just shortly unlock
     // ground floor, floor1, exterior, stairs (this, for all), that is, everywhere but the parking
 
-    //Creem l'array areaAccessMedium que guardarà totes les areesa les quals un
-    // usuari amb privilegi mitja (empleats) podrà accedir.
+    // Create an array of areas that an employee with medium privileges can access.
     ArrayList<Area> areaAccessMedium = new ArrayList<Area>();
 
     areaAccessMedium.add(DirectoryDoors.findAreaById("ground_floor"));
@@ -78,11 +68,12 @@ public final class DirectoryUsers {
     areaAccessMedium.add(DirectoryDoors.findAreaById("exterior"));
     areaAccessMedium.add(DirectoryDoors.findAreaById("stairs"));
 
-    // Creem un array on es troben les accions que pot realitzar l'usuari amb privilegi mitjà.
+    // Create an array of actions that an employee with medium privileges can perform.
     ArrayList<String> employeeActions = new ArrayList<String>();
     employeeActions.add(Actions.OPEN);
     employeeActions.add(Actions.CLOSE);
     employeeActions.add(Actions.UNLOCK_SHORTLY);
+
     //Setting employees schedule
     LocalDate firstDayEmployees = LocalDate.of(2023, 9, 1);
     LocalDate lastDayEmployees = LocalDate.of(2024, 3, 1);
@@ -90,9 +81,8 @@ public final class DirectoryUsers {
     Schedule scheduleEmployees = new Schedule(firstDayEmployees, lastDayEmployees, monToFri,
         LocalTime.of(9, 0), LocalTime.of(17, 0));
 
-    //Creem el grup empleats i l'inicialitzem amb les seves condicions
-    // i l'afegim com atribut de l'usuari.
-
+    // Create a group for employees and initialize it with their conditions.
+    // Add it as an attribute of the user.
     Group employees = new Group(areaAccessMedium, "employee", employeeActions, scheduleEmployees);
 
     users.add(new User("Ernest", "74984", employees));
@@ -104,11 +94,10 @@ public final class DirectoryUsers {
     // all actions
     // all spaces
 
-    //Creem l'array areaAccessTotal que guardarà totes les areesa les quals un
-    // usuari amb privilegi total (managers) podrà accedir.
+    // Create an array of areas that a manager with total privileges can access.
     ArrayList<Area> areaAccessTotal = new ArrayList<Area>();
 
-    // Creem un array on es troben les accions que pot realitzar l'usuari amb privilegi mitjà.
+    // Create an array of actions that a manager with total privileges can perform.
     ArrayList<String> managerAction = new ArrayList<String>();
     managerAction.add(Actions.OPEN);
     managerAction.add(Actions.CLOSE);
@@ -122,8 +111,8 @@ public final class DirectoryUsers {
     Schedule scheduleManagers = new Schedule(firstDayManagers, lastDayManagers, monToSat,
         LocalTime.of(8, 0), LocalTime.of(20, 0));
 
-    //Creem el grup managers i l'inicialitzem amb les seves condicions
-    // i l'afegim com atribut de l'usuari.
+    // Create a group for managers and initialize it with their conditions.
+    // Add it as an attribute of the user.
     Group managers = new Group(areaAccessTotal, "manager", managerAction, scheduleManagers);
     areaAccessTotal.add(DirectoryDoors.findAreaById("building"));
     users.add(new User("Manel", "95783", managers));
@@ -140,10 +129,14 @@ public final class DirectoryUsers {
 
     Schedule scheduleAdmin = new Schedule(firstDayManagers, lastDayManagers, everyday,
         LocalTime.of(0, 0), LocalTime.of(23, 59));
+
+    // Create a group for admins and initialize it with their conditions.
+    // Add it as an attribute of the user.
     Group admins = new Group(areaAccessTotal, "admin", managerAction, scheduleAdmin);
     users.add(new User("Ana", "11343", admins));
   }
 
+  // Find a user by their credential.
   public static User findUserByCredential(String credential) {
     for (User user : users) {
       if (user.getCredential().equals(credential)) {

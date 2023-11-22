@@ -5,16 +5,16 @@ public abstract class Status {
   protected String name;
 
 
-  //Inicialitzem Status
+  // Initialize Status
   public Status(Door door) {
     this.door = door;
   }
 
-  //Funció que retorna el nom de l'estat
-  public String getName() {
+  // Get the name of the status  public String getName() {
     return name;
   }
 
+  // Abstract methods to be implemented by subclasses
   public abstract void locked();
 
   public abstract void unlock();

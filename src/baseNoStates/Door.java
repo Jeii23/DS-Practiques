@@ -6,31 +6,42 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 
+/**
+ * Represents a door in the system.
+ */
 public class Door {
   private static final Logger logger = LoggerFactory.getLogger(Door.class);
   private final String id;
   private Status state;
   private Space from;
   private Space to;
+  private boolean closed;
 
-  //inicialitzem la variable state.
+  /**
+   * Sets the state of the door.
+   */
   public void setState(Status state) {
     this.state = state;
   }
 
-  //Funció que ens retorna des d'on venim
+  /**
+   * Gets the 'from' Space of the door.
+   */
   public Area getFrom() {
     return from;
   }
 
-  //Funció que ens retorna cap a on anem
-  public Area getTo() {
-    return to;
-  }
+  /**
+   * Gets the 'to' Space of the door.
+   */
+  public Area getTo() {return to;}
 
-  private boolean closed; // physically
 
-  //inicialitzem la nostra variable Door
+
+
+  /**
+   * Initializes the Door with a unique identifier, a 'from' Space, and a 'to' Space.
+   */
   public Door(String id, Space from, Space to) {
     state = new Locked(this);
     this.id = id;
@@ -41,11 +52,11 @@ public class Door {
 
   }
 
-  //new doorstate(this)
-  // new locked(this)
+  /**
+   * Processes a request to perform an action on the door.
+   */
   public void processRequest(RequestReader request) {
-    // it is the Door that process the request because the door has and knows
-    // its state, and if closed or open
+
     if (request.isAuthorized()) {
       String action = request.getAction();
       doAction(action);
@@ -94,15 +105,23 @@ public class Door {
     }
   }
 
+  /**
+   * Checks if the door is closed.
+   */
   public boolean isClosed() {
     return closed;
   }
 
+  /**
+   * Gets the unique identifier of the door.
+   */
   public String getId() {
     return id;
   }
 
-  //Funció que ens retorna l'estat de la porta
+  /**
+   * Gets the name of the current state of the door.
+   */
   public String getStateName() {
     return state.getName();
   }

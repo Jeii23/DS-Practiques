@@ -2,27 +2,40 @@ package baseNoStates;
 
 import java.util.ArrayList;
 
+/**
+ * Represents a space within the system, extending the concept of an area.
+ */
 public class Space extends Area {
 
+  // List of doors that provide access to this space.
   private ArrayList<Door> doorsGivingAccess;
 
+  /**
+   * Initializes a space with the specified ID.
+   */
   public Space(String id) {
     super(id);
     doorsGivingAccess = new ArrayList<Door>();
 
   }
-  //en retorna la llista de portes a les que podem accedir
+
+  /**
+   * Returns the list of doors that provide access to this space.
+   */
   public ArrayList<Door> getDoorsGivingAccess() {
     return doorsGivingAccess;
   }
-  //Funció que ens permet afegir una porta a l'array.
+
+  /**
+   * Adds a door to the list of doors that provide access to this space.
+   */
   public void addDoorGivingAccess(Door door) {
     doorsGivingAccess.add(door);
   }
 
-  //Funció que ens busca una àrea mitjançant el seu id, si la troba la retorna, si no,
-  // ens printa que no s'ha trobat.
-
+  /**
+   * Accepts a visitor for visiting this space.
+   */
   @Override
   public void acceptVisitor(Visitor v) {
     v.visitSpace(this);

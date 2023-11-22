@@ -2,13 +2,26 @@ package baseNoStates;
 
 import java.util.ArrayList;
 
+/**
+ * Represents a group of users with specific access privileges and schedules.
+ */
 public class Group {
+  // List of areas accessible by the group.
   private ArrayList<Area> areasAccess;
+
+  // Name of the group.
   private String name;
+
+  // List of actions the group can perform.
   private ArrayList<String> actions;
+
+  // Schedule specifying the group's access time.
   private Schedule schedule;
 
-  //Constructor que ens inicialitza el nostre grup.
+
+  /**
+   * Constructor that initializes the group with access areas, a name, actions, and a schedule.
+   */
   public Group(ArrayList<Area> areasAccess,
                String name, ArrayList<String> actions, Schedule schedule) {
     this.areasAccess = areasAccess;
@@ -17,16 +30,19 @@ public class Group {
     this.schedule = schedule;
   }
 
+  /**
+   * Gets the schedule of the group.
+   */
   public Schedule getSchedule() {
     return schedule;
   }
 
-  /*
-Funció que ens diu si es pot accedir a un espai iterant l'array areasAcces
- i si aquest espai es troba ens permet l'accés, sino,verifiquem si e suna instancia de partició,
- si ho és, convertim les arees del array en particions i busquem dins aquesta partició si l'espai
- donat es troba,si es troba retornem true sino, retornem false.
-*/
+  /**
+   * Checks if the group can access a specific space by iterating through its areasAccess.
+   * If the space is found, returns true. If the space is not directly found,
+   * checks if it's inside a partition, converting areas in the array to partitions,
+   * and searches within that partition.
+   */
   public boolean canAccess(Area space) {
     for (Area access : areasAccess) {
       for (Area a : access.getAreas()) {
@@ -38,8 +54,11 @@ Funció que ens diu si es pot accedir a un espai iterant l'array areasAcces
     return false;
   }
 
-  //Aquesta funció ens permet saber si es pot realitzar una acció. Es recorre l'array actions
-  //on a cada iteració comproba si l'acció es troba a l'aray, si es troba retora true, si no, false.
+
+  /**
+   * Checks if the group can perform a specific action by iterating through the actions array.
+   * If the action is found, returns true. Otherwise, returns false.
+   */
   public boolean canDoAction(String action) {
     for (String actions : actions) {
       if (actions.equals(action)) {
@@ -49,7 +68,6 @@ Funció que ens diu si es pot accedir a un espai iterant l'array areasAcces
     return false;
   }
 
-  //Funció que comprova si es troba dins l'horari d'accés
 
 
 }

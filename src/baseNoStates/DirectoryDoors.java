@@ -6,13 +6,20 @@ import org.slf4j.LoggerFactory;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-//singleton
+/**
+ * Represents a directory of doors in the system. Implements the Singleton pattern.
+ */
 public final class DirectoryDoors {
   private static final org.slf4j.Logger logger = LoggerFactory.getLogger(DirectoryDoors.class);
 
   private static ArrayList<Door> allDoors;
   private static DirectoryDoors uniqueInstance = null;
+  private static Area building;
 
+  /**
+   * Gets the instance of DirectoryDoors (Singleton pattern).
+   * @return The instance of DirectoryDoors.
+   */
   public static DirectoryDoors getInstance() {
     if (uniqueInstance == null) {
       uniqueInstance = new DirectoryDoors();
@@ -20,12 +27,12 @@ public final class DirectoryDoors {
     return uniqueInstance;
   }
 
-  private static Area building;
 
+  /**
+   * Creates doors and initializes the building structure.
+   */
   public static void makeDoors() {
     getInstance();
-    // Creem l'espai amb el nom indicat i introduïm aquest
-    // espai en un array de la partició que el conté.
 
     //Basement
     Space parking = new Space("parking");
@@ -67,6 +74,11 @@ public final class DirectoryDoors {
     allDoors = new ArrayList<>(Arrays.asList(d1, d2, d3, d4, d5, d6, d7, d8, d9));
   }
 
+  /**
+   * Finds a door by its unique identifier.
+   * @param id The unique identifier of the door.
+   * @return The door with the specified ID, or null if not found.
+   */
   public static Door findDoorById(String id) {
     for (Door door : allDoors) {
       if (door.getId().equals(id)) {
@@ -77,15 +89,21 @@ public final class DirectoryDoors {
     return null; // otherwise we get a Java error
   }
 
-  // Aquesta funció el que fa es buscar dins el nostre array building, que conté totes les arees,
-  // l'àrea que es passa per parametre i ens la retorna.
+  /**
+   * Finds an area by its unique identifier.
+   * @param id The unique identifier of the area.
+   * @return The area with the specified ID, or null if not found.
+   */
   public static Area findAreaById(String id) {
     Visitor visitor = new FindAreaByIdVisitor(id);
     building.acceptVisitor(visitor);
     return visitor.findAreaById(id);
   }
 
-  // this is needed by RequestRefresh
+  /**
+   * Gets a list of all doors in the system.
+   * @return A list of all doors.
+   */
   public static ArrayList<Door> getAllDoors() {
     logger.info(String.valueOf(allDoors));
     return allDoors;
