@@ -13,7 +13,8 @@ public class Locked extends Status {
 
   /**
    * Initializes the Locked state for a door using the constructor of the base class.
-   */  public Locked(Door door) {
+   */
+  public Locked(Door door) {
     super(door);
     name = States.LOCKED;
   }

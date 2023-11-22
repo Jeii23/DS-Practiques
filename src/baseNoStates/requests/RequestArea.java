@@ -1,12 +1,14 @@
 package baseNoStates.requests;
 
-import baseNoStates.*;
-
+import baseNoStates.Actions;
+import baseNoStates.Area;
+import baseNoStates.DirectoryDoors;
+import baseNoStates.Door;
+import baseNoStates.GetDoorsGivingAccessVisitor;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import org.json.JSONArray;
 import org.json.JSONObject;
-
 
 
 public class RequestArea implements Request {

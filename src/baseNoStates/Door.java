@@ -34,9 +34,9 @@ public class Door {
   /**
    * Gets the 'to' Space of the door.
    */
-  public Area getTo() {return to;}
-
-
+  public Area getTo() {
+    return to;
+  }
 
 
   /**

@@ -1,11 +1,11 @@
 package baseNoStates;
 
+import ch.qos.logback.classic.Logger;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Arrays;
-import ch.qos.logback.classic.Logger;
 import org.slf4j.LoggerFactory;
 
 

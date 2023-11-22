@@ -31,7 +31,9 @@ public class GetDoorsGivingAccessVisitor implements Visitor {
    * Returns null for this implementation since it's not used.
    */
   @Override
-  public Area findAreaById(String id) {return null;}
+  public Area findAreaById(String id) {
+    return null;
+  }
 
   /**
    * Returns the collected list of doors giving access.

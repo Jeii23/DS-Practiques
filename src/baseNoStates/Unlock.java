@@ -18,15 +18,19 @@ public class Unlock extends Status {
   }
 
 
-  /**Method for transitioning to the 'Locked' state.
+  /**
+   * Method for transitioning to the 'Locked' state.
    * This allows calling the method directly on an instance with '.locked()'
    * and sets the state to 'Locked'.
    */
   public void locked() {
     this.door.setState(new Locked(this.door));
   }
-  /**Method for attempting to unlock the door.
-   * Logs a message indicating that the door cannot be unlocked because it's already unlocked or open.
+
+  /**
+   * Method for attempting to unlock the door.
+   * Logs a message indicating that the door cannot
+   * be unlocked because it's already unlocked or open.
    */
   public void unlock() {
     logger.warn("Can't unlock the door "

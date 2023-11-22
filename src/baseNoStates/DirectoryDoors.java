@@ -1,10 +1,10 @@
 package baseNoStates;
 
 import ch.qos.logback.classic.Logger;
-import org.slf4j.LoggerFactory;
-
 import java.util.ArrayList;
 import java.util.Arrays;
+import org.slf4j.LoggerFactory;
+
 
 /**
  * Represents a directory of doors in the system. Implements the Singleton pattern.
@@ -18,6 +18,7 @@ public final class DirectoryDoors {
 
   /**
    * Gets the instance of DirectoryDoors (Singleton pattern).
+   *
    * @return The instance of DirectoryDoors.
    */
   public static DirectoryDoors getInstance() {
@@ -76,6 +77,7 @@ public final class DirectoryDoors {
 
   /**
    * Finds a door by its unique identifier.
+   *
    * @param id The unique identifier of the door.
    * @return The door with the specified ID, or null if not found.
    */
@@ -91,6 +93,7 @@ public final class DirectoryDoors {
 
   /**
    * Finds an area by its unique identifier.
+   *
    * @param id The unique identifier of the area.
    * @return The area with the specified ID, or null if not found.
    */
@@ -102,6 +105,7 @@ public final class DirectoryDoors {
 
   /**
    * Gets a list of all doors in the system.
+   *
    * @return A list of all doors.
    */
   public static ArrayList<Door> getAllDoors() {

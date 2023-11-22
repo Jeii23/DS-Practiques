@@ -8,6 +8,7 @@ public abstract class Area {
 
   /**
    * Constructor where the area is initialized with a unique identifier.
+   *
    * @param id The unique identifier of the area.
    */
   public Area(String id) {
@@ -16,6 +17,7 @@ public abstract class Area {
 
   /**
    * Gets the unique identifier of the area.
+   *
    * @return The unique identifier of the area.
    */
   public String getId() {
@@ -24,6 +26,7 @@ public abstract class Area {
 
   /**
    * Accepts a visitor for the area.
+   *
    * @param v The visitor to be accepted.
    */
   public abstract void acceptVisitor(Visitor v);
@@ -31,6 +34,7 @@ public abstract class Area {
   /**
    * Gets a list of areas. This method is implemented in this base class
    * to provide an empty list. Subclasses may override it if needed.
+   *
    * @return An empty list of areas.
    */
   public List<Area> getAreas() {
