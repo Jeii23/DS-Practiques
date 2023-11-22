@@ -1,4 +1,9 @@
 <configuration>
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
     <appender name="FILE" class="ch.qos.logback.core.FileAppender">
         <encoder class="ch.qos.logback.core.encoder.LayoutWrappingEncoder">
             <layout class="ch.qos.logback.classic.html.HTMLLayout">
@@ -7,11 +12,13 @@
         </encoder>
         <file>test.html</file>
     </appender>
-    <root level="info">
+    <root level="error">
         <appender-ref ref="STDOUT" />
         <appender-ref ref="FILE" />
     </root>
-    <logger name="baseNoStates.DirectoryDoors" level="DEBUG" additivity="false">
+    <logger name="baseNoStates.DirectoryUsers" level="OFF" />
+    <logger name="baseNoStates" level="DEBUG" additivity="false">
+        <appender-ref ref="STDOUT" />
         <appender-ref ref="FILE" />
     </logger>
 </configuration>
