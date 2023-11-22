@@ -1,10 +1,10 @@
-package baseNoStates.requests;
+package basenostates.requests;
 
-import baseNoStates.Actions;
-import baseNoStates.Area;
-import baseNoStates.DirectoryDoors;
-import baseNoStates.Door;
-import baseNoStates.GetDoorsGivingAccessVisitor;
+import basenostates.Actions;
+import basenostates.Area;
+import basenostates.DirectoryDoors;
+import basenostates.Door;
+import basenostates.GetDoorsGivingAccessVisitor;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import org.json.JSONArray;

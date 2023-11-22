@@ -1,4 +1,4 @@
-package baseNoStates;
+package basenostates;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;

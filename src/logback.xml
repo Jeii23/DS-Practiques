@@ -16,8 +16,8 @@
         <appender-ref ref="STDOUT" />
         <appender-ref ref="FILE" />
     </root>
-    <logger name="baseNoStates.DirectoryUsers" level="OFF" />
-    <logger name="baseNoStates" level="DEBUG" additivity="false">
+    <logger name="basenostates.DirectoryUsers" level="OFF" />
+    <logger name="basenostates" level="DEBUG" additivity="false">
         <appender-ref ref="STDOUT" />
         <appender-ref ref="FILE" />
     </logger>

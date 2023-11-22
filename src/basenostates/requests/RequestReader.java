@@ -1,10 +1,10 @@
-package baseNoStates.requests;
+package basenostates.requests;
 
-import baseNoStates.Area;
-import baseNoStates.DirectoryDoors;
-import baseNoStates.DirectoryUsers;
-import baseNoStates.Door;
-import baseNoStates.User;
+import basenostates.Area;
+import basenostates.DirectoryDoors;
+import basenostates.DirectoryUsers;
+import basenostates.Door;
+import basenostates.User;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import org.json.JSONArray;

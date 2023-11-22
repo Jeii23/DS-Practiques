@@ -1,4 +1,4 @@
-package baseNoStates;
+package basenostates;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -33,7 +33,7 @@ public class Unlock extends Status {
    * be unlocked because it's already unlocked or open.
    */
   public void unlock() {
-    logger.warn("Can't unlock the door "
+    logger.info("Can't unlock the door "
         + door.getId() + " because it's already unlocked or it's open");
   }
 

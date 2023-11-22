@@ -1,4 +1,4 @@
-package baseNoStates;
+package basenostates;
 
 import java.util.ArrayList;
 import java.util.List;

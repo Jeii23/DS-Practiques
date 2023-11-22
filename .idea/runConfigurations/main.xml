@@ -1,6 +1,6 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="main" type="Application" factoryName="Application">
-    <option name="MAIN_CLASS_NAME" value="baseNoStates.Main" />
+    <option name="MAIN_CLASS_NAME" value="basenostates.Main" />
     <module name="DS-Practiques" />
     <option name="VM_PARAMETERS" value="-ea" />
     <method v="2">

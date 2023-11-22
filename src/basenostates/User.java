@@ -1,6 +1,4 @@
-package baseNoStates;
-
-import java.util.ArrayList;
+package basenostates;
 
 // 'User' class representing a user in the system.
 public class User {

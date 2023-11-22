@@ -1,6 +1,5 @@
-package baseNoStates;
+package basenostates;
 
-import ch.qos.logback.classic.Logger;
 import java.util.ArrayList;
 import java.util.Arrays;
 import org.slf4j.LoggerFactory;

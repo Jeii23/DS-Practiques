@@ -1,6 +1,6 @@
-package baseNoStates;
+package basenostates;
 
-import baseNoStates.requests.RequestReader;
+import basenostates.requests.RequestReader;
 import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

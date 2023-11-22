@@ -1,4 +1,4 @@
-package baseNoStates;
+package basenostates;
 
 public final class States {
   public static final String UNLOCKED = "unlocked";

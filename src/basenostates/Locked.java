@@ -1,4 +1,4 @@
-package baseNoStates;
+package basenostates;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,7 +24,7 @@ public class Locked extends Status {
    * Logs a warning message.
    */
   public void locked() {
-    logger.warn("Can't lock the door " + this.door.getId() + " because it's already locked");
+    logger.info("Can't lock the door " + this.door.getId() + " because it's already locked");
   }
 
   /**

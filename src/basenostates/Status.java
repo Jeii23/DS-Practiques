@@ -1,4 +1,4 @@
-package baseNoStates;
+package basenostates;
 
 public abstract class Status {
   protected Door door;

@@ -1,6 +1,5 @@
-package baseNoStates;
+package basenostates;
 
-import ch.qos.logback.classic.Logger;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalTime;

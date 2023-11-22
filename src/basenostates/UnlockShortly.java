@@ -1,4 +1,4 @@
-package baseNoStates;
+package basenostates;
 
 public class UnlockShortly extends Status {
   /**Constructor for initializing an instance of 'UnlockShortly'.
