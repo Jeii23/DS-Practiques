@@ -97,7 +97,7 @@ public class Door {
       // fall through
       case Actions.UNLOCK_SHORTLY:
         // TODO
-        logger.info("Action " + action + " not implemented yet");
+        logger.error("Action " + action + " not implemented yet");
         break;
       default:
         assert false : "Unknown action " + action;

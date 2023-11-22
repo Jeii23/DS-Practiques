@@ -85,7 +85,7 @@ public final class DirectoryDoors {
         return door;
       }
     }
-    logger.warn("door with id " + id + " not found");
+    logger.error("door with id " + id + " not found");
     return null; // otherwise we get a Java error
   }
 

@@ -143,7 +143,7 @@ public final class DirectoryUsers {
         return user;
       }
     }
-    logger.info("user with credential " + credential + " not found");
+    logger.error("user with credential " + credential + " not found");
     return null; // otherwise we get a Java error
   }
 

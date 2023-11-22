@@ -29,7 +29,7 @@ public class Unlock extends Status {
    * Logs a message indicating that the door cannot be unlocked because it's already unlocked or open.
    */
   public void unlock() {
-    logger.info("Can't unlock the door "
+    logger.warn("Can't unlock the door "
         + door.getId() + " because it's already unlocked or it's open");
   }
 
