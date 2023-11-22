@@ -10,7 +10,8 @@ public abstract class Status {
     this.door = door;
   }
 
-  // Get the name of the status  public String getName() {
+  // Get the name of the status
+  public String getName() {
     return name;
   }
 

@@ -56,17 +56,17 @@ public final class DirectoryDoors {
     Space exterior = new Space("exterior");
     building = new Partition("building",
         new ArrayList<>(Arrays.asList(stairs, exterior, floor1, groundFloor, basement)));
-    // basement
+    // Basement
     Door d1 = new Door("D1", exterior, parking); // exterior, parking
     Door d2 = new Door("D2", stairs, parking); // stairs, parking
 
-    // ground floor
+    // Ground floor
     Door d3 = new Door("D3", exterior, hall); // exterior, hall
     Door d4 = new Door("D4", stairs, hall); // stairs, hall
     Door d5 = new Door("D5", hall, room1); // hall, room1
     Door d6 = new Door("D6", hall, room2); // hall, room2
 
-    // first floor
+    // First floor
     Door d7 = new Door("D7", stairs, corridor); // stairs, corridor
     Door d8 = new Door("D8", corridor, room3); // corridor, room3
     Door d9 = new Door("D9", corridor, it); // corridor, IT
