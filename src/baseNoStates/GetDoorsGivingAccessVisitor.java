@@ -6,7 +6,7 @@ import java.util.ArrayList;
  * A visitor that collects doors giving access within areas it visits.
  */
 public class GetDoorsGivingAccessVisitor implements Visitor {
-  //List to store the doors giving access found during the visit.
+  / List to store the doors giving access found during the visit.
   private ArrayList<Door> doorsGivingAccess = new ArrayList<>();
 
   /**
