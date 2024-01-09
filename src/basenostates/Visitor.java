@@ -1,6 +1,7 @@
 package basenostates;
 
 import java.util.ArrayList;
+import java.util.List;
 
 // Interface representing a visitor in the system.
 public interface Visitor {
@@ -16,5 +17,7 @@ public interface Visitor {
 
   // Method to get a list of doors giving access.
   ArrayList<Door> getDoorsGivingAccess();
+
+  List<Area> getArea(Area partition);
 }
 

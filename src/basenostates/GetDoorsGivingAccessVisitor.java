@@ -1,6 +1,7 @@
 package basenostates;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A visitor that collects doors giving access within areas it visits.
@@ -22,7 +23,7 @@ public class GetDoorsGivingAccessVisitor implements Visitor {
    */
   @Override
   public void visitPartition(Partition partition) {
-    for (Area area : partition.getAreas()) {
+    for (Area area : getArea(partition)) {
       area.acceptVisitor(this);
     }
   }
@@ -41,5 +42,16 @@ public class GetDoorsGivingAccessVisitor implements Visitor {
   @Override
   public ArrayList<Door> getDoorsGivingAccess() {
     return doorsGivingAccess;
+  }
+
+
+  @Override
+  public List<Area> getArea(Area partition) {
+    List<Area> allAreas = new ArrayList<>();
+    for (Area area : partition.getArray()) {
+      allAreas.add(area);
+      allAreas.addAll(getArea(area));
+    }
+    return allAreas;
   }
 }

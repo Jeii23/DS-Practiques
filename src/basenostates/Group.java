@@ -44,8 +44,10 @@ public class Group {
    * and searches within that partition.
    */
   public boolean canAccess(Area space) {
+    GetDoorsGivingAccessVisitor visitor = new GetDoorsGivingAccessVisitor();
+    space.acceptVisitor(visitor);
     for (Area access : areasAccess) {
-      for (Area a : access.getAreas()) {
+      for (Area a : visitor.getArea(access)) {
         if (a.equals(space)) {
           return true;
         }
