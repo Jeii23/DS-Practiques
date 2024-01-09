@@ -1,11 +1,13 @@
 package basenostates;
 
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Area {
   protected String id;
-
+  public abstract JSONObject toJson(int depth);
   /**
    * Constructor where the area is initialized with a unique identifier.
    *

@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import org.slf4j.LoggerFactory;
 
-
 /**
  * Represents a directory of doors in the system. Implements the Singleton pattern.
  */
@@ -97,9 +96,16 @@ public final class DirectoryDoors {
    * @return The area with the specified ID, or null if not found.
    */
   public static Area findAreaById(String id) {
-    Visitor visitor = new FindAreaByIdVisitor(id);
-    building.acceptVisitor(visitor);
-    return visitor.findAreaById(id);
+    if (id.equals("ROOT")) {
+      // Special id that means that the wanted area is the root.
+      // This is because the Flutter app client doesn't know the
+      // id of the root, differently from the simulator
+      return building;
+    } else {
+      Visitor visitor = new FindAreaByIdVisitor(id);
+      building.acceptVisitor(visitor);
+      return visitor.findAreaById(id);
+    }
   }
 
   /**

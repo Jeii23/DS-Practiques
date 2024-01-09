@@ -1,5 +1,8 @@
 package basenostates;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 
 /**
@@ -18,7 +21,17 @@ public class Space extends Area {
     doorsGivingAccess = new ArrayList<Door>();
 
   }
-
+  public JSONObject toJson(int depth) { // depth not used here
+    JSONObject json = new JSONObject();
+    json.put("class", "space");
+    json.put("id", id);
+    JSONArray jsonDoors = new JSONArray();
+    for (Door d : doorsGivingAccess) {
+      jsonDoors.put(d.toJson());
+    }
+    json.put("access_doors", jsonDoors);
+    return json;
+  }
   /**
    * Returns the list of doors that provide access to this space.
    */
