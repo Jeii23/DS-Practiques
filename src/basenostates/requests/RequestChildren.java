@@ -1,10 +1,7 @@
 package basenostates.requests;
 
-import basenostates.Actions;
 import basenostates.Area;
 import basenostates.DirectoryDoors;
-import basenostates.Door;
-import basenostates.GetDoorsGivingAccessVisitor;
 import org.json.JSONObject;
 
 public class RequestChildren implements Request {
